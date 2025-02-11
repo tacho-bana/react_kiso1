@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css'
 
 function App() {
   // スレッド一覧を保持する状態
@@ -22,7 +23,7 @@ function App() {
       const data = await response.json();
       // 取得したデータを状態にセット
       // 追加で読み込む場合は、既存 + 新規取得データで合体させる
-      setThreads((prevThreads) => [...prevThreads, ...data]);
+      setThreads(data);
     } catch (e) {
       console.error(e);
       setError('スレッド一覧を取得できませんでした。');
@@ -35,23 +36,34 @@ function App() {
   }, [offset]);
 
   // 「もっと見る」ボタンを押したときのイベントハンドラ
-  const handleLoadMore = () => {
+  const handleNext = () => {
     setOffset((prevOffset) => prevOffset + 10);
   };
 
+  const handlePrev = () => {
+    setOffset((prevOffset) => Math.max(0, prevOffset - 10))
+  }
+
   return (
-    <div>
-      <h1>掲示板スレッド一覧</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <ul>
+
+    
+    <div className="app-container">
+      <header>
+        <h2>掲示板</h2>
+      </header>
+      <h1 className="title">新着スレッド</h1>
+      {error && <p className="error">{error}</p>}
+      <ul className="thread-list">
         {threads.map((thread, index) => (
-          <li key={`thread-${index}`}>
-            {/* ここでは仮に title プロパティがある前提で表示 */}
+          <li key={`thread-${index}`} className="thread-item">
             {thread.title}
           </li>
         ))}
       </ul>
-      <button onClick={handleLoadMore}>次の 10 件を取得</button>
+      <div className="button-group">
+        <button onClick={handlePrev} disabled={offset === 0} className="paging-button">前へ</button>
+        <button onClick={handleNext} className="paging-button">次へ</button>
+      </div>
     </div>
   );
 };
