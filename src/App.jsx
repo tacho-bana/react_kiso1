@@ -12,8 +12,9 @@ function App() {
   // スレッド一覧を取得する関数
   async function fetchThreads(current_offset){
     try {
+      const api = import.meta.env.VITE_API_BASE_URL
       const response = await fetch(
-        `https://railway.bulletinboard.techtrain.dev/threads?offset=${current_offset}`
+        `${api}/threads?offset=${current_offset}`
       );
 
       if (!response.ok) {
