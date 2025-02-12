@@ -1,9 +1,9 @@
 /* コンテナー全体 */
-/* .app-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-} */
+.app-container {
+  padding: 0;
+  width: 100%;
+
+}
 
 /* タイトル */
 .title {
@@ -64,7 +64,7 @@
   cursor: not-allowed;
 }
 
-header{
+#header{
+  display: flex;
   background-color: #aafacb;
-  
 }
