@@ -50,15 +50,18 @@ function ThreadList() {
 
     
     <div className="app-container">
-        <Link to="/new" style={{ display: 'inline-block', marginTop: '2rem' }}>
+        <Link to="/threads/new" style={{ display: 'inline-block', marginTop: '2rem' }}>
         新規スレッド作成
         </Link>
       <h2 className="title">新着スレッド</h2>
       {error && <p className="error">{error}</p>}
       <ul className="thread-list">
-        {threads.map((thread, index) => (
-          <li key={`thread-${index}`} className="thread-item">
+        {threads.map((thread) => (
+          <li key={`thread.id`} className="thread-item">
+            <Link to={`/threads/${thread.id}`}>
             {thread.title}
+            </Link>
+            
           </li>
         ))}
       </ul>
