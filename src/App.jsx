@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ThreadList from './ThreadList';
 import NewThread from './NewThread';
+import ThreadDetail from './ThreadDetail';
 
 function App() {
   return (
@@ -12,9 +13,9 @@ function App() {
       </header>
       <Routes>
         <Route path="/" element={<ThreadList />} />
-        <Route path="/new" element={<NewThread />} />
+        <Route path="/threads/new" element={<NewThread />} />
+        <Route path="/threads/:id" element={<ThreadDetail />} /> 
       </Routes>
-      <footer>© 2023 MyBulletinApp</footer>
     </BrowserRouter>
   );
 }
