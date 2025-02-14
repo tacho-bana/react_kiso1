@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import './App.css'
 
 function ThreadList() {
-  // スレッド一覧を保持する状態
   const [threads, setThreads] = useState([]);
   // 読み込み開始位置
   const [offset, setOffset] = useState(0);
-  // エラー情報を保持する状態
   const [error, setError] = useState('');
 
   // スレッド一覧を取得する関数
@@ -23,8 +21,7 @@ function ThreadList() {
       }
       
       const data = await response.json();
-      // 取得したデータを状態にセット
-      // 追加で読み込む場合は、既存 + 新規取得データで合体させる
+
       setThreads(data);
     } catch (e) {
       console.error(e);
@@ -32,7 +29,7 @@ function ThreadList() {
     }
   };
 
-  // コンポーネントのマウント時＆offset が更新されたときに実行
+  // offset が更新されたとき
   useEffect(() => {
     fetchThreads(offset);
   }, [offset]);

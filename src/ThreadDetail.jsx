@@ -12,6 +12,7 @@ function ThreadDetail() {
     const [body, setBody] = useState('');
     const api = import.meta.env.VITE_API_URL;
 
+    // 投稿一覧
     async function fetchThread(threadId, Offset){
         try{
         const response = await fetch(`${api}/threads/${threadId}/posts?offset=${Offset}`);
@@ -28,6 +29,7 @@ function ThreadDetail() {
         }
     };
 
+    // 新規投稿
     async function ThreadPost (){
         try{
             const response = await fetch(`${api}/threads/${id}/posts`,{
@@ -62,7 +64,7 @@ function ThreadDetail() {
 
 
     if (!thread) {
-        return <p>スレッドを読み込み中。</p>;
+        return <p>投稿を読み込み中...</p>;
       }
     
     return (
@@ -80,7 +82,7 @@ function ThreadDetail() {
               <textarea
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
-                placeholder="ここに投稿内容を入力"
+                placeholder="投稿内容を入力"
               />
               <button onClick={() => {
                 if (!body.trim()) {
