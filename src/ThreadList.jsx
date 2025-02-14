@@ -37,7 +37,6 @@ function ThreadList() {
     fetchThreads(offset);
   }, [offset]);
 
-  // 「もっと見る」ボタンを押したときのイベントハンドラ
   const handleNext = () => {
     setOffset((prevOffset) => prevOffset + 10);
   };
@@ -58,7 +57,7 @@ function ThreadList() {
       <ul className="thread-list">
         {threads.map((thread) => (
           <li key={`thread.id`} className="thread-item">
-            <Link to={`/threads/${thread.id}`}>
+            <Link to={`/threads/${thread.id}`} state={{title: thread.title}}>
             {thread.title}
             </Link>
             
