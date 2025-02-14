@@ -44,8 +44,10 @@ function NewThread() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-            <button type="submit">投稿</button><br></br>
-            <Link to="/">戻る</Link>
+            <button type="submit">投稿</button><br></br><br></br>
+            <div className="header-bar">
+              <Link to="/" className="back-link">← 戻る</Link>
+            </div>
         </form>
     </div>
   );

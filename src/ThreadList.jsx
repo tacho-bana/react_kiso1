@@ -49,7 +49,7 @@ function ThreadList() {
 
     
     <div className="app-container">
-        <Link to="/threads/new" style={{ display: 'inline-block', marginTop: '2rem' }}>
+        <Link to="/threads/new" style={{ display: 'inline-block', marginTop: '2rem' }} className="back-link">
         新規スレッド作成
         </Link>
       <h2 className="title">新着スレッド</h2>
@@ -66,7 +66,7 @@ function ThreadList() {
       </ul>
       <div className="button-group">
         <button onClick={handlePrev} disabled={offset === 0} className="paging-button">前へ</button>
-        <button onClick={handleNext} className="paging-button">次へ</button>
+        <button onClick={handleNext} disabled={threads.length < 10} className="paging-button">次へ</button>
       </div>
     </div>
   );
