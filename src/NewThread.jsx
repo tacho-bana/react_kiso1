@@ -7,9 +7,14 @@ function NewThread() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // 新規スレッド
   async function Submit(e) {
     e.preventDefault();
+
+    if (!title.trim()) {
+      setError('タイトルを入力してください。');
+      return;
+    }
+
     try {
       setError('');
       const api = import.meta.env.VITE_API_URL;  
@@ -28,30 +33,22 @@ function NewThread() {
       setError('スレッドの作成に失敗しました。');
     }
   }
-
   return (
     <div>
         <h2>スレッドを作成</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          if (!title.trim()) {
-            setError("文字を入力してください。");
-            return;
-          }
-          Submit();
-        }}>
-          <label>タイトル：</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <button type="submit">投稿</button><br></br><br></br>
-        </form>
-        <div className="header-bar">
+        <form onSubmit={Submit}>
+            <label>タイトル：</label>
+            <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            <button type="submit">投稿</button><br></br><br></br>
+            <div className="header-bar">
               <Link to="/" className="back-link">← 戻る</Link>
-        </div>
+            </div>
+        </form>
     </div>
   );
 }
